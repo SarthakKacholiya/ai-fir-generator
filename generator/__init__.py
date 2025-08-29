@@ -1,0 +1,1 @@
+# makes generator a package

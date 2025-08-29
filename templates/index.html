@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card">
+  <div class="grid two">
+    <section class="form-panel">
+      <h2>Complaint Details</h2>
+      <form method="POST" id="firForm">
+        <div class="section">
+          <h3>Complainant</h3>
+          <div class="grid two">
+            <label>Full Name
+              <input type="text" name="complainant_name" required placeholder="Your full name" />
+            </label>
+            <label>Age
+              <input type="number" name="complainant_age" min="1" placeholder="e.g., 29" />
+            </label>
+          </div>
+          <div class="grid two">
+            <label>Gender
+              <select name="complainant_gender">
+                <option value="">Prefer not to say</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <label>Phone
+              <input type="tel" name="complainant_phone" placeholder="+91-XXXXXXXXXX" />
+            </label>
+          </div>
+          <label>Email
+            <input type="email" name="complainant_email" placeholder="name@example.com" />
+          </label>
+          <label>Address
+            <textarea name="complainant_address" rows="2" placeholder="Street, City, PIN"></textarea>
+          </label>
+          <label>Relation to Victim (if any)
+            <input type="text" name="relation_to_victim" placeholder="Self / Friend / Family / Other" />
+          </label>
+        </div>
+
+        <div class="section">
+          <h3>Jurisdiction</h3>
+          <div class="grid three">
+            <label>Police Station
+              <input type="text" name="police_station" required />
+            </label>
+            <label>District
+              <input type="text" name="district" />
+            </label>
+            <label>State
+              <input type="text" name="state" />
+            </label>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>Incident</h3>
+          <div class="grid two">
+            <label>Date & Time
+              <input type="datetime-local" name="incident_datetime" required />
+            </label>
+            <label>Place of Occurrence
+              <input type="text" name="incident_place" required placeholder="Exact location / landmark" />
+            </label>
+          </div>
+          <label>Category
+            <select name="category">
+              <option>Theft</option>
+              <option>Assault</option>
+              <option>Fraud/Cyber</option>
+              <option>Harassment</option>
+              <option>Vandalism</option>
+              <option>Missing Person</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>Applicable IPC Sections (indicative)
+            <input type="text" name="ipc_sections" placeholder="e.g., 379, 420, 506" />
+          </label>
+          <label>Brief Facts / Narrative
+            <textarea name="narrative" rows="6" required placeholder="Describe the incident clearly with date/time, sequence of events, persons involved, and any evidence."></textarea>
+          </label>
+        </div>
+
+        <div class="section">
+          <h3>Parties</h3>
+          <label>Suspect / Accused (if any)
+            <textarea name="suspects" rows="3" placeholder="Names, descriptions, identifiers if known"></textarea>
+          </label>
+          <label>Witnesses (if any)
+            <textarea name="witnesses" rows="3" placeholder="Names, contact (if available)"></textarea>
+          </label>
+        </div>
+
+        <div class="section">
+          <h3>Loss / Request</h3>
+          <label>Loss / Injury
+            <input type="text" name="loss_value" placeholder="Monetary value or description of injury/damage" />
+          </label>
+          <label>Relief & Action Requested
+            <textarea name="requested_action" rows="3" placeholder="Investigation, recovery, medical exam, protection, etc."></textarea>
+          </label>
+        </div>
+
+        <div class="section grid three">
+          <label>Signature Place
+            <input type="text" name="signature_place" placeholder="City / PS" />
+          </label>
+          <label>Signature Date
+            <input type="date" name="signature_date" />
+          </label>
+          <label>Output Format
+            <select name="format_type">
+              <option value="pdf" selected>PDF</option>
+              <option value="docx">DOCX</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="section grid two">
+          <label class="checkbox">
+            <input type="checkbox" name="declaration_truth" /> I declare the above is true to my knowledge.
+          </label>
+          <label class="checkbox">
+            <input type="checkbox" name="consent_contact" /> I consent to be contacted by the IO.
+          </label>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="primary">Generate Draft</button>
+          <button type="reset" class="ghost">Clear</button>
+        </div>
+        <p class="tiny-note">This tool helps draft an FIR. Always review with the duty officer. It is not legal advice.</p>
+      </form>
+    </section>
+
+    <section class="preview-panel">
+      <h2>Live Preview</h2>
+      {% if fir_text %}
+        <pre class="preview">{{ fir_text }}</pre>
+        {% if download_url %}
+          <a class="download-btn" href="{{ download_url }}">Download File</a>
+        {% endif %}
+      {% else %}
+        <div class="placeholder">
+          <p>Your generated FIR draft will appear here after you submit the form.</p>
+        </div>
+      {% endif %}
+    </section>
+  </div>
+</div>
+
+{% endblock %}

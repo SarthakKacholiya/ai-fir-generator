@@ -1,0 +1,56 @@
+FIRST INFORMATION REPORT (FIR) – DRAFT
+(For reference/filing assistance only; verify with local police format)
+
+1) Complainant Details
+   Name            : {{ complainant_name }}
+   Age/Gender      : {{ complainant_age }} / {{ complainant_gender }}
+   Address         : {{ complainant_address }}
+   Phone / Email   : {{ complainant_phone }} / {{ complainant_email }}
+   Relation to Victim (if any): {{ relation_to_victim }}
+
+2) Jurisdiction
+   Police Station  : {{ police_station }}
+   District / State: {{ district }} / {{ state }}
+
+3) Occurrence of Offence
+   Date & Time     : {{ incident_datetime }}
+   Place of Occurrence: {{ incident_place }}
+   Category (indicative): {{ category }}
+
+4) Sections of Law/IPC (indicative; confirm with officer)
+   Sections Invoked: {{ ipc_sections }}
+
+5) Brief Facts / Narrative of the Complaint
+{{ narrative }}
+
+6) Suspect / Accused Details (if any)
+{{ suspects }}
+
+7) Witnesses (if any)
+{{ witnesses }}
+
+8) Loss / Injury (property, money, physical, mental etc.)
+{{ loss_value }}
+
+9) Relief & Action Requested
+{{ requested_action }}
+
+10) Declarations
+{% if declaration_truth -%}
+   I declare that the information provided above is true to the best of my knowledge and belief.
+{%- else -%}
+   (No declaration provided.)
+{%- endif %}
+{% if consent_contact -%}
+   I consent to be contacted by the investigating officer for further information or clarification.
+{%- endif %}
+
+Place: {{ signature_place }}
+Date : {{ signature_date }}
+Generated On: {{ generated_on }}
+
+Complainant's Signature:
+_____________________________
+
+Note: This draft has been generated for convenience only. It is not legal advice. Please review with the
+duty officer and follow the official FIR format required by your jurisdiction.
